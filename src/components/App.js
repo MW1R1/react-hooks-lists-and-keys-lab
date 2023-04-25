@@ -9,7 +9,7 @@ import user from "../data/user";
 function App() {
   return (
     <div>
-      <NavBar links={['Home', 'About', 'ProjectList']} />
+      <NavBar />
       <Home username={user.name} city={user.city} color={user.color} />
       <About bio={user.bio} links={user.links} />
       <ProjectList projects={user.projects} />
@@ -17,7 +17,7 @@ function App() {
   );
 }
 
-function NavBar({ links }) {
+function NavBar({ links = ['Home', 'About', 'Projects'] }) {
   return (
     <nav>
       {links.map((link, index) => (
@@ -37,11 +37,11 @@ function ProjectList({ projects }) {
   );
 }
 
-function ProjectItem({ technologies, ...project }) {
+function ProjectItem({ technologies, about, ...project }) {
   return (
     <div>
-      <h3>{project.title}</h3>
-      <p>{project.description}</p>
+      <h3>{project.name}</h3>
+      <p>{about}</p>
       <div>
         {technologies.map((technology, index) => (
           <span key={index}>{technology}</span>
